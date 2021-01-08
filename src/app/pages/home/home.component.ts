@@ -2,8 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { NgbModal, ModalDismissReasons } from "@ng-bootstrap/ng-bootstrap";
-import { PostModel } from '../../models/post.model';
-import { PostService } from '../../services/post.service';
+import { PostModel } from "../../models/post.model";
+import { PostService } from "../../services/post.service";
+import { NgForm } from "@angular/forms";
 
 @Component({
   selector: "app-home",
@@ -14,24 +15,44 @@ export class HomeComponent implements OnInit {
   title = "appBootstrap";
   post = new PostModel();
   applicantCode = localStorage.getItem("applicantcode");
+  idUser = localStorage.getItem("iduser");
+  postUser = [];
+  images = FileList;
   closeResult: string;
   constructor(
     private auth: AuthService,
     private router: Router,
-    private modalService: NgbModal, private postService: PostService
+    private modalService: NgbModal,
+    private postService: PostService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.viewPostByUserId(this.idUser);
+  }
 
   salir() {
     this.auth.logout();
     this.router.navigateByUrl("/login");
   }
+  viewPostByUserId(idUser) {
+    this.postService
+      .viewPostByIdUser(idUser, this.applicantCode)
+      .subscribe((resp) => {
+        console.log(resp);
+        console.log(resp["data"][0].description);
+        this.postUser = resp["data"];
+      });
+  }
 
-  createPost(data) {
-    this.postService.createPost(data, this.applicantCode).subscribe(resp => {
+  selectFiles(event) {
+    this.images = event.target.files;
+    console.log(this.images);
+  }
+
+  createPost(f: NgForm) {
+    this.postService.createPost(f, this.applicantCode).subscribe((resp) => {
       console.log(resp);
-    })
+    });
   }
   open(content) {
     this.modalService
