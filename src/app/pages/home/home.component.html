@@ -1,0 +1,47 @@
+<div class="m-5">
+    <h1>Prueba App</h1>
+    <hr />
+
+    <button class="btn btn-outline-danger" (click)="salir()">Salir</button>
+</div>
+<div>
+    <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">
+    Publicar
+  </button>
+
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+        </div>
+        <div class="modal-body">
+            <form #f="ngForm" (ngSubmit)="createPost(f)">
+                <div class="mb-3">
+                    <label for="description " class="form-label">Comentario</label>
+                    <input type="description " name="description" [(ngModel)]="post.description" class="form-control" id="description " />
+                </div>
+                <div class="mb-3">
+                    <label for="image " class="form-label">Imagen</label>
+                    <input type="file " name="image" [(ngModel)]="post.image" class="form-control" id="image " />
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox " class="form-check-input" id="exampleCheck1 " />
+                    <label class="form-check-label" for="exampleCheck1 ">Check me out</label
+          >
+        </div>
+        <button type="submit " class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button "
+        class="btn btn-outline-dark"
+        (click)="modal.close('Save click')"
+      >
+        Ok
+      </button>
+    </div>
+  </ng-template>
+</div>
