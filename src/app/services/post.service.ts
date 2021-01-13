@@ -3,10 +3,9 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { PostModel } from "../models/post.model";
 import { environment } from "../../environments/environment.prod";
 import { UsuarioModel } from "../models/usuario.model";
-import { map } from 'rxjs/operators';
+import { map } from "rxjs/operators";
 import { NgForm } from "@angular/forms";
-import { Observable } from 'rxjs';
-
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",

@@ -1,73 +1,83 @@
 <div class="container">
-    <div class="row m-5">
-        <div class="col-sm">
-            <h1>Prueba App</h1>
-        </div>
-        <div class="col-sm">
-            <h1></h1>
-        </div>
-
-        <div class="col-sm">
-            <button class="btn btn-outline-danger" (click)="salir()">Salir</button>
-        </div>
-    </div>
-    <div class="row justify-content-md-center">
-        <button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">
-      Publicar
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Socialapp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
+            <div class="collapse navbar-collapse col-lg-5" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <!-- <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link" href="#">Features</a> -->
+                    <!-- <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a> -->
+                </div>
 
+            </div>
+        </div>
+        <a class="nav-link" class="d-lg-inline-block my-2 my-md-0 ms-md-3" (click)="salir()">Salir</a>
+    </nav>
+    <div class="row justify-content-md-center mt-5">
+        <div class="col md-auto col-lg-5">
+            <input type="text " (click)="open(mymodal)" class="form-control" placeholder="escribe algo " />
+        </div>
+
+        <div class="col md-auto col-lg-2">
+            <button class="btn btn-md btn-outline-primary " (click)="open(mymodal) ">
+                Publicar
+                </button>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-md-center">
         <ng-template #mymodal let-modal>
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-basic-title ">Tu Publicaión</h4>
-                <button type="button " class="close" aria-label="Close " (click)="modal.dismiss('Cross click')">
+                <button type="button" class="close " aria-label="Close " (click)="modal.dismiss( 'Cross click') ">
           <span aria-hidden="true ">×</span>
         </button>
             </div>
-            <div class="modal-body">
-                <form #f="ngForm" (ngSubmit)="createPost(f)">
-                    <div class="mb-3">
-                        <label for="description " class="form-label">Comentario</label>
-                        <input type="description " name="description " [(ngModel)]="post.description" class="form-control" id="description " />
+            <div class="modal-body ">
+                <form #f="ngForm" (ngSubmit)="createPost(f) ">
+                    <div class="mb-3 ">
+                        <label for="description" class="form-label ">Comentario</label>
+                        <input type="description" name="description" [(ngModel)]="post.description" class="form-control" id="description" />
                     </div>
                     <div class="mb-3">
-                        <label for="image" class="form-label">Imagen</label>
-                        <input type="file" name="image" [(ngModel)]="post.image" (change)="selectFiles($event)" class="form-control" id="image" />
+                        <label for="image" class="form-label ">Imagen</label>
+                        <input type="file" name="image " [(ngModel)]="post.image" (change)="selectFiles($event) " class="form-control" id="image" />
                     </div>
-                    <div class="mb-3 form-check">
-                        <input type="checkbox " class="form-check-input" id="exampleCheck1 " />
-                        <label class="form-check-label" for="exampleCheck1 ">Check me out</label
+                    <!-- <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label
             >
-          </div>
-          <button type="submit " class="btn btn-primary">Publicar</button>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button
-          type="button "
-          class="btn btn-outline-dark"
-          (click)="modal.close('Save click')"
-        >
+          </div> -->
+                    <button type="submit" class="btn btn-primary">Publicar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close( 'Save click')">
           Ok
         </button>
-      </div>
-    </ng-template>
-  </div>
-  <br />
-  <div class="container">
-    <br />
-    <div class="row justify-content-md-center" *ngFor="let item of postUser">
-      <div class="col"></div>
-      <div class="col">
-        <div class="card" style="width: 18rem">
-          <img src="..." class="card-img-top" alt="..." />
-          <div class="card-body">
-            <!-- <h5 class="card-title">Publicacion</h5> -->
-            <p class="card-text">{{ item.description }}</p>
-            <a href="#" class="btn btn-primary">Comentar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col"></div>
+            </div>
+        </ng-template>
     </div>
-  </div>
+    <br />
+    <div class="container ">
+        <br/>
+        <div class="row justify-content-md-center mt-5" *ngFor="let item of postUser">
+            <div class="col"></div>
+            <div class="col">
+                <div class="card" style="width: 18rem">
+                    <img src="... " class="card-img-top" alt="... " />
+                    <div class="card-body ">
+                        <!-- <h5 class="card-title ">Publicacion</h5> -->
+                        <p class="card-text">{{ item.description }}</p>
+                        <input type="text" class="form-cotrol" placeholder="Comentar la publicación" />
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
 </div>
