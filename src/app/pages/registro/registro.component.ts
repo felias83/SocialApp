@@ -44,11 +44,12 @@ export class RegistroComponent implements OnInit {
    
         this.error=resp;
         
-        if (resp.code != 200) {
+        if (resp['code'] != 200) {
           Swal.fire({
             type: 'error',
             title: 'Error al registrar',
-            text: this.error.msg});
+            text: this.error['msg']
+          });
         }
         else{
 

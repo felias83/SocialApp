@@ -49,11 +49,11 @@ export class LoginComponent implements OnInit {
         console.log(resp);
         Swal.close();
         this.error=resp
-        if (this.error.code != 200){
+        if (this.error['code'] != 200){
           Swal.fire({
             type: 'error',
             title: 'Error al autenticar',
-            text: this.error.msg
+            text: this.error['msg']
           });
 
         }
