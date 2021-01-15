@@ -44,6 +44,14 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  erasePost(idPost){
+    console.log(idPost);
+    this.postService.deletePost(idPost, this.applicantCode)
+    .subscribe((resp) => {
+      console.log(resp);
+    });
+  }
+
   selectFiles(event) {
     this.images = event.target.files;
     console.log(this.images);
@@ -51,6 +59,11 @@ export class HomeComponent implements OnInit {
 
   createPost(f: NgForm) {
     this.postService.createPost(f, this.applicantCode).subscribe((resp) => {
+      console.log(resp);
+    });
+  }
+  deletePost(f: NgForm) {
+    this.postService.deletePost(f, this.applicantCode).subscribe((resp) => {
       console.log(resp);
     });
   }

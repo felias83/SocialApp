@@ -34,6 +34,23 @@ export class PostService {
         })
       );
   }
+  deletePost(idPost, applicantcode) {
+    const body = new HttpParams()
+
+      .set("applicantcode", applicantcode)
+      .set("token", localStorage.getItem("token"))
+      .set("idpost", idPost)
+     
+    console.log("body", body);
+    return this.http
+      .post(`${this.url}/posts/delete`, body.toString(), this.getOptions())
+      .pipe(
+        map((resp) => {
+          console.log(resp);
+          return resp;
+        })
+      );
+  }
   viewPostByIdUser(f: NgForm, applicantcode): Observable<any> {
     const body = new HttpParams()
 
