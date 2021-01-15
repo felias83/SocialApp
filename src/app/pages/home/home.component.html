@@ -105,14 +105,14 @@
     <br />
     <div
       class="row justify-content-md-center mt-5"
-      *ngFor="let item of postUser"
+      *ngFor="let item of postUser; let i=index"
     >
       <div class="col"></div>
       <div class="col">
         <div class="card" style="width: 26rem">
           <img src="{{ item.image}}" class="card-img-top" alt="" />
           <div class="card-body">
-            <label class="card-title  ">{{ item.usernickname }}</label><i class="fa fa-trash ml-5" (click)="erasePost(item.idpost)" aria-hidden="true"></i>
+            <label class="card-title">{{ item.usernickname }}</label><i class="fa fa-trash ml-5" (click)="erasePost(item.idpost,i)" aria-hidden="true"></i>
             <p class="card-text">{{ item.description }}</p>
             <input
               type="text"

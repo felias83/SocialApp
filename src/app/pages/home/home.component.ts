@@ -44,11 +44,13 @@ export class HomeComponent implements OnInit {
       });
   }
 
-  erasePost(idPost){
+  erasePost(idPost,index){
     console.log(idPost);
     this.postService.deletePost(idPost, this.applicantCode)
     .subscribe((resp) => {
       console.log(resp);
+      // this.postUser.splice(index, 1);
+      this.viewPostByUserId(this.idUser)
     });
   }
 
@@ -60,6 +62,7 @@ export class HomeComponent implements OnInit {
   createPost(f: NgForm) {
     this.postService.createPost(f, this.applicantCode).subscribe((resp) => {
       console.log(resp);
+      this.viewPostByUserId(this.idUser);
     });
   }
   deletePost(f: NgForm) {
