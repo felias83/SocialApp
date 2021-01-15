@@ -109,16 +109,17 @@
     >
       <div class="col"></div>
       <div class="col">
-        <div class="card" style="width: 18rem">
-          <img src="... " class="card-img-top" alt="... " />
+        <div class="card" style="width: 26rem">
+          <img src="{{ item.image}}" class="card-img-top" alt="" />
           <div class="card-body">
-            <!-- <h5 class="card-title ">Publicacion</h5> -->
+            <label class="card-title  ">{{ item.usernickname }}</label><i class="fa fa-trash ml-5" (click)="erasePost(item.idpost)" aria-hidden="true"></i>
             <p class="card-text">{{ item.description }}</p>
             <input
               type="text"
               class="form-cotrol"
               placeholder="Comentar la publicación"
             />
+            <button class="btn btn-sm btn-outline-primary ml-5">Comentar</button>
           </div>
         </div>
       </div>

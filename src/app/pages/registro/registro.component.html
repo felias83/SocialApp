@@ -77,6 +77,21 @@
 
           <span class="focus-input100"></span>
 </div>
+<span *ngIf="f.submitted && f.controls['applicantcode'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
+  >
+  <div class="wrap-input100 m-b-16">
+    <input
+      class="input100"
+      type="number"
+      name="applicantcode"
+      [(ngModel)]="usuario.applicantcode"
+      minlength="6"
+      required
+      placeholder="applicant code"
+    />
+
+    <span class="focus-input100"></span>
+</div>
 <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
         >
         <div class="wrap-input100 m-b-16">
