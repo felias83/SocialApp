@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpParams, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { UsuarioModel } from "../models/usuario.model";
+import { Observable, throwError } from "rxjs";
+import { catchError, retry } from "rxjs/operators";
 
 import { map } from "rxjs/operators";
 
@@ -44,7 +46,7 @@ export class AuthService {
         this.guardarIdUser(resp["data"]["iduser"]);
         this.guardarApplicantCode(usuario.applicantcode);
         return resp;
-      })
+      },catchError(this.handleError))
     );
   }
 
@@ -66,12 +68,12 @@ export class AuthService {
       .set("nickname", usuario.nickname);
 
     return this.http
-      .post(`${this.url}/create/users/create`, body, { headers: headers })
+      .post(`${this.url}/users/create`, body, { headers: headers })
       .pipe(
         map((resp) => {
           this.guardarToken(resp["token"]);
           return resp;
-        })
+        },catchError(this.handleError))
       );
   }
 
@@ -122,7 +124,8 @@ export class AuthService {
   }
 
   estaAutenticado(): boolean {
-    if (this.userToken.length < 2) {
+    console.log(this.userToken);
+    if ( this.userToken == undefined || this.userToken.length < 2  ) {
       return false;
     }
 
@@ -135,5 +138,17 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error("ha ocurrido un error", error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(`error ${error.status}, ` + `body was: ${error.error}`);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError("error.");
   }
 }

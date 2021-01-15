@@ -36,46 +36,42 @@
 
           <span class="focus-input100"></span>
     </div>
-    <span *ngIf="f.submitted && f.controls['fullname'].errors" class="text-danger animated fadeIn">El fullname es obligatorio</span
-        >
+    <!-- <span *ngIf="f.submitted && f.controls['fullname'].errors" class="text-danger animated fadeIn">El fullname es obligatorio</span
+        > -->
         <div class="wrap-input100 m-b-16">
           <input
             class="input100"
             type="text"
             name="fullname"
             [(ngModel)]="usuario.fullname"
-            minlength="2"
-            required
+            
             placeholder="fullname"
           />
 
           <span class="focus-input100"></span>
 </div>
-<span *ngIf="f.submitted && f.controls['birthdate'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
-        >
+<!-- <span *ngIf="f.submitted && f.controls['birthdate'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
+        > -->
         <div class="wrap-input100 m-b-16">
           <input
             class="input100"
             type="birthdate"
             name="birthdate"
             [(ngModel)]="usuario.birthdate"
-            minlength="6"
-            required
+           
             placeholder="birthdate"
           />
 
           <span class="focus-input100"></span>
 </div>
-<span *ngIf="f.submitted && f.controls['image'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
-        >
+<!-- <span *ngIf="f.submitted && f.controls['image'].errors" class="text-danger animated fadeIn">Al menos 6 letras</span
+        > -->
         <div class="wrap-input100 m-b-16">
           <input
             class="input100"
             type="file"
             name="image"
-            [(ngModel)]="usuario.image"
-            minlength="6"
-            required
+            [(ngModel)]="usuario.image"         
             placeholder="image"
           />
 

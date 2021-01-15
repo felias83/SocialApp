@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   usuario: UsuarioModel = new UsuarioModel();
   recordarme = false;
+  error= {};
 
   constructor( private auth: AuthService,
                private router: Router ) { }
@@ -47,21 +48,28 @@ export class LoginComponent implements OnInit {
 
         console.log(resp);
         Swal.close();
+        this.error=resp
+        if (this.error.code != 200){
+          Swal.fire({
+            type: 'error',
+            title: 'Error al autenticar',
+            text: this.error.msg
+          });
 
+        }
+        else{
         if ( this.recordarme ) {
           localStorage.setItem('email', this.usuario.email);
         }
-
-
         this.router.navigateByUrl('/home');
-
+      }
       }, (err) => {
 
-        console.log(err.error.error.message);
+        console.log(err);
         Swal.fire({
           type: 'error',
           title: 'Error al autenticar',
-          text: err.error.error.message
+          text: err
         });
       });
 
